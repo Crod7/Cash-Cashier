@@ -7,7 +7,7 @@ interface PageState {
 }
 
 const initialState: PageState = {
-    page: 'main',
+    page: 'StartPage',
 };
 
 const pageSlice = createSlice({

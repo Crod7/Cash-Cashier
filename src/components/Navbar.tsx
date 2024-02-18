@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useUser } from '@auth0/nextjs-auth0/client';
-import { useColorMode } from '@chakra-ui/react';
 import PostUser from '@/lib/database/apiFunctions/PostUser';
 import CheckUser from '@/lib/database/apiFunctions/CheckUser';
 import GetUser from '@/lib/database/apiFunctions/GetUser';
@@ -16,11 +15,6 @@ import { useSelector } from 'react-redux';
 const Navbar: React.FC = () => {
   const dispatch = useDispatch();
   const { user, error, isLoading } = useUser();
-
-  // Color Mode Imports
-  const { colorMode } = useColorMode(); // Get the current color mode from useColorMode
-  const isDarkMode = colorMode === 'dark'; // Check if it's dark mode
-  const customColorModeClass = isDarkMode ? 'dark' : 'light'; // Determine the appropriate class
 
   // Redux
   const page = useSelector((state: any) => state.page.page)
@@ -112,7 +106,7 @@ const Navbar: React.FC = () => {
   }
 
   return (
-    <nav className={`${customColorModeClass} p-2 h-12 flex mt-3`}>
+    <nav className={`p-2 h-12 flex mt-3`}>
       <ul className="flex list-none m-0 p-0 justify-between items-center">
         {(userData) ? (
           <>
