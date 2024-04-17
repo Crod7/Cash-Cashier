@@ -4,6 +4,7 @@ import Navbar from '@/src/components/Navbar';
 //Redux Imports
 import { useSelector } from 'react-redux';
 import StartPage from '../components/StartPage';
+import Inventory from '../components/Inventory';
 
 export default function BasePage() {
     // Redux
@@ -20,8 +21,11 @@ export default function BasePage() {
             {userData && (
                 <div>Hey</div>
             )}
-            {page == 'StartPage' && (
+            {page == 'StartPage' && userData && (
                 <StartPage />
+            )}
+            {page == 'Inventory' && userData && (
+                <Inventory />
             )}
         </div>
     );

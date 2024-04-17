@@ -18,7 +18,7 @@ const StartPage: React.FC = () => {
     const page = useSelector((state: any) => state.page.page)
     const userData = useSelector((state: any) => state.user.userData);
 
-    const handleInventoryClick = () => {
+    const handleStartClick = () => {
         dispatch(setPage('Inventory'))
     }
 
@@ -28,10 +28,7 @@ const StartPage: React.FC = () => {
 
     return (
         <div className='w-[100vw] h-[100vh] flex justify-center items-center flex-col'>
-            <button className='border-4 border-black rounded px-16 py-8 text-4xl font-extrabold' onClick={handleInventoryClick}>Inventory</button>
 
-            <button className='border-4 border-black rounded px-16 py-8 text-4xl font-extrabold'>Start</button>
-            <button className='border-4 border-black rounded px-16 py-8 text-4xl font-extrabold'>History</button>
         </div>
     );
 }
