@@ -18,17 +18,15 @@ const StartPage: React.FC = () => {
     const page = useSelector((state: any) => state.page.page)
     const userData = useSelector((state: any) => state.user.userData);
 
-    const handleStartClick = () => {
-        dispatch(setPage('Inventory'))
-    }
+
 
 
 
 
 
     return (
-        <div className='w-[100vw] h-[100vh] flex justify-center items-center flex-col'>
-
+        <div className='w-[100vw] h-[100vh] bg-blue-500 flex justify-center items-center flex-col'>
+            <button className='w-[100px] h-[100px] bg-green-400 rounded-md flex justify-center items-center flex-col'>+</button>
         </div>
     );
 }
