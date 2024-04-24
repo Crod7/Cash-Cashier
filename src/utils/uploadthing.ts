@@ -3,7 +3,7 @@ import {
     generateUploadDropzone,
 } from "@uploadthing/react";
 
-import type { OurFileRouter } from "@/src/server/uploadthing";
+import type { OurFileRouter } from "@/src/pages/api/server/uploadthing";
 
 export const UploadButton = generateUploadButton<OurFileRouter>();
 export const UploadDropzone = generateUploadDropzone<OurFileRouter>();
