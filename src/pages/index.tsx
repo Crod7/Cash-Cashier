@@ -1,6 +1,8 @@
 import React from 'react';
 import LoadingScreen from '../components/Utility/Loading-Feature/LoadingScreen';
 import Navbar from '@/src/components/Navbar';
+import ImageUploaderButton from '../components/Image-Uploader/Image-Uploader';
+
 //Redux Imports
 import { useSelector } from 'react-redux';
 import StartPage from '../components/StartPage';
@@ -14,6 +16,7 @@ export default function BasePage() {
 
     return (
         <div>
+            <ImageUploaderButton />
             {loadingScreen && (
                 <LoadingScreen />
             )}
