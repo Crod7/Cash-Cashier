@@ -74,15 +74,8 @@ const Navbar: React.FC = () => {
   };
 
   const loginUser = async () => {
-    if (user) {
-      console.log(user)
-    }
     dispatch(setLoadingScreen(true))
-    if (user) {
-      await PostUser(user);
-    }
 
-    /*
     if (user) {
       const userExists = await CheckUser(user.email);
       if (userExists === 'userNotFound') { // If the user dosen't exists we create one
@@ -94,8 +87,6 @@ const Navbar: React.FC = () => {
         getUserData();
       }
     }
-
-    */
 
     dispatch(setLoadingScreen(false))
   }
