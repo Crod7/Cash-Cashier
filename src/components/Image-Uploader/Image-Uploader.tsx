@@ -2,7 +2,7 @@ import { UploadButton } from "@/src/utils/uploadthing";
 
 export default function ImageUploaderButton() {
     return (
-        <main className="flex flex-col items-center justify-between p-24 bg-red-500">
+        <main className="flex flex-col items-center justify-between p-24 ">
             <UploadButton
                 endpoint="imageUploader"
                 onClientUploadComplete={(res) => {

@@ -4,7 +4,7 @@ if (!process.env.MONGODB_URI) {
     throw new Error('Invalid/Missing environment variable: "MONGODB_URI"')
 }
 
-const databaseName = "Froggy_Cash_Cashier";
+const databaseName = "Cash_Cashier";
 
 const uri = process.env.MONGODB_URI
 const options = {}

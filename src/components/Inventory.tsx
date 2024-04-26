@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useUser } from '@auth0/nextjs-auth0/client';
+import ImageUploaderButton from './Image-Uploader/Image-Uploader';
 
 // Redux Imports
 import { setUserData } from '@/src/store/userSlice';
 import { setLoadingScreen } from '@/src/store/loadingScreenSlice';
 import { setPage } from '../store/pageSlice';
 import { useDispatch } from 'react-redux';
-//Redux Imports
 import { useSelector } from 'react-redux';
 
 
@@ -51,7 +51,7 @@ const StartPage: React.FC = () => {
                             </button>
                             <div className='flex justify-between'>
                                 <div>
-                                    Placeholder
+                                    <ImageUploaderButton />
                                     <button type="submit" className='font-extrabold bg-yellow-200 p-4 min-w-[150px] rounded-2xl'>Upload Image</button>
 
                                 </div>
