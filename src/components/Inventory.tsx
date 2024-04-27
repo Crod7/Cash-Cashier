@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import ImageUploaderButton from './Image-Uploader/Image-Uploader';
+import ImageUploadData from '../types/ImageUpload';
 
 // Redux Imports
 import { setUserData } from '@/src/store/userSlice';
@@ -21,13 +22,16 @@ const StartPage: React.FC = () => {
     const [itemName, setItemName] = useState("");
     const [quantity, setQuantity] = useState("");
     const [price, setPrice] = useState("");
+    const [imageUrl, setImageUrl] = useState("");
 
 
     // Redux
     const page = useSelector((state: any) => state.page.page);
     const userData = useSelector((state: any) => state.user.userData);
+    const saveImageData = useSelector((state: any) => state.saveImage.saveImage)
 
     const handleAddButton = () => {
+        setImageUrl('')
         setShowAddModal(true)
     }
 
@@ -35,6 +39,10 @@ const StartPage: React.FC = () => {
 
     }
 
+    // On image upload we hold its url. If the item is saved we add this as the image.
+    useEffect(() => {
+        setImageUrl((saveImageData))
+    }, [saveImageData]);
 
 
     return (
