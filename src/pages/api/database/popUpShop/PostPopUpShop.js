@@ -18,7 +18,7 @@ export default async (req, res) => {
                 res.status(500).json({ error: "PopUpShop creation failed" });
             }
         } else {
-            res.status(400).json({ error: "Bad Request" });
+            res.status(400).json({ error: "Bad Request too bad" });
         }
     } catch (e) {
         console.error(e);
