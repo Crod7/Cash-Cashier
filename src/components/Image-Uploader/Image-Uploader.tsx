@@ -1,8 +1,6 @@
 import { UploadButton } from "@/src/utils/uploadthing";
 
 
-
-import ImageUploadData from "@/src/types/ImageUpload";
 // Redux Imports
 import { setSaveImage } from '@/src/store/saveImageSlice';
 import { setLoadingScreen } from '@/src/store/loadingScreenSlice';

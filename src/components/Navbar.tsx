@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useUser } from '@auth0/nextjs-auth0/client';
-import PostUser from '@/lib/database/apiFunctions/PostUser';
-import CheckUser from '@/lib/database/apiFunctions/CheckUser';
-import GetUser from '@/lib/database/apiFunctions/GetUser';
+import PostUser from '@/lib/database/apiFunctions/user/PostUser';
+import CheckUser from '@/lib/database/apiFunctions/user/CheckUser';
+import GetUser from '@/lib/database/apiFunctions/user/GetUser';
 // Redux Imports
 import { setUserData } from '@/src/store/userSlice';
 import { setLoadingScreen } from '@/src/store/loadingScreenSlice';

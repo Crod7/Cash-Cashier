@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import ImageUploaderButton from './Image-Uploader/Image-Uploader';
-import ImageUploadData from '../types/ImageUpload';
+
 
 // Redux Imports
 import { setUserData } from '@/src/store/userSlice';
