@@ -33,6 +33,7 @@ const StartPage: React.FC = () => {
     const handleAddButton = () => {
         setImageUrl('')
         setShowAddModal(true)
+        console.log(imageUrl)
     }
 
     const handleAddItem = () => {
@@ -41,7 +42,8 @@ const StartPage: React.FC = () => {
 
     // On image upload we hold its url. If the item is saved we add this as the image.
     useEffect(() => {
-        setImageUrl((saveImageData))
+        setImageUrl(saveImageData)
+        console.log(imageUrl)
     }, [saveImageData]);
 
 
@@ -59,6 +61,7 @@ const StartPage: React.FC = () => {
                             </button>
                             <div className='flex justify-between'>
                                 <div>
+                                    <img src={imageUrl} />
                                     <ImageUploaderButton />
                                     <button type="submit" className='font-extrabold bg-yellow-200 p-4 min-w-[150px] rounded-2xl'>Upload Image</button>
 

@@ -21,6 +21,20 @@ export default function ImageUploaderButton() {
             <UploadButton
                 endpoint="imageUploader"
                 // Below represents the upload process
+                onBeforeUploadBegin={(files) => {
+                    dispatch(setLoadingScreen(true))
+
+                    // Preprocess files before uploading (e.g. rename them)
+                    return files.map(
+                        (f) => new File([f], "renamed-" + f.name, { type: f.type }),
+                    );
+                }}
+                /*
+                        onUploadBegin={(name) => {
+                        dispatch(setLoadingScreen(true))
+                        }}
+                */
+
                 onClientUploadComplete={(res: any) => {
                     // Do something with the response
                     // console.log("Files: ", res);
@@ -35,7 +49,8 @@ export default function ImageUploaderButton() {
                     const url = resJSON.substring(startIndex, endIndex);
 
                     dispatch(setSaveImage(url))
-                    alert("Upload Completed");
+                    dispatch(setLoadingScreen(false))
+                    //alert("Upload Completed");
 
 
                 }}
@@ -43,6 +58,7 @@ export default function ImageUploaderButton() {
                     // Do something with the error.
                     alert(`ERROR! ${error.message}`);
                 }}
+
             />
         </main>
     );
