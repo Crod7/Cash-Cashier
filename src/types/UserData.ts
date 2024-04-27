@@ -3,6 +3,7 @@
 interface UserData {
     name?: string;
     email?: string;
+    currentPopUpShopID?: any;
     shopHistory?: any;
 }
 
