@@ -32,7 +32,7 @@ const Navbar: React.FC = () => {
     window.location.href = '/api/auth/logout';
   }
 
-  // Handles Test User login
+  // Handles Test User login ============================================================================================================================
   const handleTestUserClick = async () => {
     dispatch(setLoadingScreen(true))
 
@@ -72,12 +72,17 @@ const Navbar: React.FC = () => {
     dispatch(setLoadingScreen(false))
   };
 
+
+  // On app start we check for user ============================================================================================================================
   const loginUser = async () => {
     dispatch(setLoadingScreen(true))
-
     if (user) {
       const userExists = await CheckUser(user.email);
       if (userExists === 'userNotFound') { // If the user dosen't exists we create one
+        const userBeingAdded = {
+          ...user,
+
+        }
         await PostUser(user);
         const newUser = await GetUser(user.email)
         dispatch(setUserData(newUser));
@@ -94,14 +99,17 @@ const Navbar: React.FC = () => {
     dispatch(setPage('budget'))
   }
   const handleOverviewClick = () => {
-    dispatch(setPage('main'))
+    dispatch(setPage('StartPage'))
   }
+
+
+  // isLoading is a variable that determines when the application is done checking for a user. ====================================================================
+  // It is only ran once during the start of the application.
   useEffect(() => {
     loginUser();
   }, [isLoading]);
 
-
-
+  // Displayed while we check for a user
   if (isLoading) {
     return <div></div>;
   }
@@ -113,7 +121,7 @@ const Navbar: React.FC = () => {
           <>
             <li className="pl-3">
               <button className={`${page === 'main' ? 'bg-blue-500 text-white' : ''} button border-2 rounded-md px-2 py-1 font-bold`} onClick={() => handleOverviewClick()}>
-                Overview
+                Main
               </button>
             </li>
             {(userData.budget) && (

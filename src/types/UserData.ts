@@ -2,8 +2,8 @@
 
 interface UserData {
     name?: string;
-    budget?: any;
-    purchaseHistory?: any;
+    email?: string;
+    shopHistory?: any;
 }
 
 export default UserData;

@@ -17,8 +17,9 @@ export default function ImageUploaderButton() {
 
 
     return (
-        <main className="flex flex-col items-center justify-between p-24 ">
+        <main className="flex flex-col items-center justify-between px-24 py-10 font-bold ">
             <UploadButton
+                className="bg-green-400 p-3 rounded-xl text-white shadow-xl"
                 endpoint="imageUploader"
                 // Below represents the upload process
                 onBeforeUploadBegin={(files) => {

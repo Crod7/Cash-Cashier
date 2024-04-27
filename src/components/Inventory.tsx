@@ -61,10 +61,10 @@ const StartPage: React.FC = () => {
                             </button>
                             <div className='flex justify-between'>
                                 <div>
-                                    <img src={imageUrl} />
+                                    <div className='bg-gray-300 h-[300px] mx-10'>
+                                        <img src={imageUrl} />
+                                    </div>
                                     <ImageUploaderButton />
-                                    <button type="submit" className='font-extrabold bg-yellow-200 p-4 min-w-[150px] rounded-2xl'>Upload Image</button>
-
                                 </div>
                                 <div>
                                     <div className='font-extrabold'>
