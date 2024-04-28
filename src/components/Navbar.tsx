@@ -21,18 +21,22 @@ const Navbar: React.FC = () => {
 
 
 
+  // =============================================================================================================================================================================
 
   // Handles login / logout functionality
   const handleLoginClick = () => {
     dispatch(setLoadingScreen(true))
     window.location.href = '/api/auth/login';
   }
+  // =============================================================================================================================================================================
+
   const handleLogoutClick = () => {
     dispatch(setLoadingScreen(true))
     window.location.href = '/api/auth/logout';
   }
+  // =============================================================================================================================================================================
 
-  // Handles Test User login ============================================================================================================================
+  // Handles Test User login 
   const handleTestUserClick = async () => {
     dispatch(setLoadingScreen(true))
 
@@ -58,6 +62,9 @@ const Navbar: React.FC = () => {
 
 
   }
+
+  // =============================================================================================================================================================================
+
   // We grab userData from the database by searching for it with the user from useUser
   const getUserData = async () => {
     dispatch(setLoadingScreen(true))
@@ -72,8 +79,9 @@ const Navbar: React.FC = () => {
     dispatch(setLoadingScreen(false))
   };
 
+  // =============================================================================================================================================================================
 
-  // On app start we check for user ============================================================================================================================
+  // On app start we check for user
   const loginUser = async () => {
     dispatch(setLoadingScreen(true))
     if (user) {
@@ -102,17 +110,20 @@ const Navbar: React.FC = () => {
     dispatch(setPage('StartPage'))
   }
 
+  // =============================================================================================================================================================================
 
-  // isLoading is a variable that determines when the application is done checking for a user. ====================================================================
+  // isLoading is a variable that determines when the application is done checking for a user.
   // It is only ran once during the start of the application.
   useEffect(() => {
     loginUser();
   }, [isLoading]);
+  // =============================================================================================================================================================================
 
   // Displayed while we check for a user
   if (isLoading) {
     return <div></div>;
   }
+
 
   return (
     <nav className={`p-2 h-12 flex mt-3`}>

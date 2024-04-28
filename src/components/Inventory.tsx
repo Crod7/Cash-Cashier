@@ -30,21 +30,26 @@ const StartPage: React.FC = () => {
     const userData = useSelector((state: any) => state.user.userData);
     const saveImageData = useSelector((state: any) => state.saveImage.saveImage)
 
+    // =============================================================================================================================================================================
+
+    // Resets the image URL and displays the modal
     const handleAddButton = () => {
         setImageUrl('')
         setShowAddModal(true)
-        console.log(imageUrl)
     }
+    // =============================================================================================================================================================================
 
     const handleAddItem = () => {
 
     }
+    // =============================================================================================================================================================================
 
     // On image upload we hold its url. If the item is saved we add this as the image.
     useEffect(() => {
         setImageUrl(saveImageData)
         console.log(imageUrl)
     }, [saveImageData]);
+    // =============================================================================================================================================================================
 
 
     return (
