@@ -40,27 +40,31 @@ const StartPage: React.FC = () => {
             // We grab the current user.
             const userToBeUpdated = await GetUser(user?.email);
 
+            // We grab the next available PopUpShopID
+            const nextPopUpShopID = await GeneratePopUpShopID();
+
             const NewPopUpShop: PopUpShop = {
-                PopUpShopID: 122311,
+                PopUpShopID: nextPopUpShopID,
                 name: 'name',
                 location: 'location',
                 total: 0,
                 dateOpened: '',
                 popUpShopFee: 0
             };
+            // Add new Pop-Up Shop to database.
             await PostPopUpShop(NewPopUpShop)
 
             // Append the new shop to the user's shop history
             const updatedShopHistory = [
                 ...(userToBeUpdated.shopHistory || []), // Copy existing history if it exists
-                NewPopUpShop.PopUpShopID
+                nextPopUpShopID
             ];
 
             // Update the user's data with the updated shop history, as well it sets the current pop up shop
             const updatedUser = {
                 ...userToBeUpdated,
                 shopHistory: updatedShopHistory,
-                currentPopUpShopID: NewPopUpShop.PopUpShopID
+                currentPopUpShopID: nextPopUpShopID
             };
 
             await UpdateUser(updatedUser);
