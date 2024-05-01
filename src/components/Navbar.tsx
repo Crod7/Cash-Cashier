@@ -87,6 +87,8 @@ const Navbar: React.FC = () => {
     if (user) {
       const userExists = await CheckUser(user.email);
       if (userExists === 'userNotFound') { // If the user dosen't exists we create one
+
+        // We can modify the user information here before addind to database
         const userBeingAdded = {
           ...user,
 

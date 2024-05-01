@@ -24,13 +24,19 @@ const StartPage: React.FC = () => {
     const dispatch = useDispatch();
     const { user, error, isLoading } = useUser();
 
-    // Used to control visibility of modal
+    // Used to control visibility of the new shop modal
     const [showNewShopModal, setShowNewShopModal] = useState(false);
 
     // Controls the item's different variables
     const [name, setName] = useState("");
     const [location, setLocation] = useState("");
     const [shopFee, setShopFee] = useState("");
+
+    // Controls the input validation for the new shop modal
+    const [nameInvalid, setNameInvalid] = useState(false);
+    const [locationInvalid, setLocationInvalid] = useState(false);
+    const [shopFeeInvalid, setShopFeeInvalid] = useState(false);
+    const [formIsValid, setFormIsValid] = useState(true);
 
     // Redux
     const page = useSelector((state: any) => state.page.page)
@@ -43,7 +49,34 @@ const StartPage: React.FC = () => {
     }
     // =============================================================================================================================================================================
     // When the Start button is pressed we add a new shop to the user's shop history and set their current shop to this new one
-    const handleNewShopModalSubmit = async () => {
+    const handleNewShopModalSubmit = async (event: { preventDefault: () => void; }) => {
+        event.preventDefault(); // Prevent the default form submission behavior from reloading the page
+
+        // We reset validation checks
+        setNameInvalid(false)
+        setLocationInvalid(false)
+        setShopFeeInvalid(false)
+        setFormIsValid(true)
+
+        if (name.trim() === "") {
+            setNameInvalid(true)
+            setFormIsValid(false)
+        }
+        if (location.trim() === "") {
+            setLocationInvalid(true)
+            setFormIsValid(false)
+        }
+        if (shopFee.trim() === "") {
+            setShopFeeInvalid(true)
+            setFormIsValid(false)
+        }
+        // We use formIsValid so that if more than one field is incorrect, we can let the user know which fields need modifying.
+        if (!formIsValid) {
+            console.log('1')
+            return
+        }
+        console.log('2')
+
         dispatch(setLoadingScreen(true));
 
         try {
@@ -103,30 +136,60 @@ const StartPage: React.FC = () => {
                             <div className='flex justify-between'>
                                 <div>
                                     <div className='font-extrabold'>
-                                        Name:
-                                        <input
-                                            type="text"
-                                            placeholder='Item'
-                                            className='p-2 my-2 rounded-2xl shadow-xl border w-[100%] font-extrabold'
-                                            value={name}
-                                            onChange={(e) => setName(e.target.value)}
-                                        />
+                                        <div className='flex'>
+                                            <div>
+                                                Name:
+                                            </div>
+                                            <div className='pl-5 text-red-500'>
+                                                {(nameInvalid) && (
+                                                    <div>Name of event</div>
+                                                )}
+                                            </div>
+                                        </div>
+                                        <div className='w-[410px]'>
+                                            <input
+                                                type="text"
+                                                placeholder='Name of shop'
+                                                className='p-2 my-2 rounded-2xl shadow-xl border w-[100%] font-extrabold'
+                                                value={name}
+                                                onChange={(e) => setName(e.target.value)}
+                                            />
+                                        </div>
+
                                     </div>
                                     <div className='font-extrabold'>
-                                        Location:
+                                        <div className='flex'>
+                                            <div>
+                                                Location:
+                                            </div>
+                                            <div className='pl-4 text-red-500'>
+                                                {(locationInvalid) && (
+                                                    <div>Please Enter a Location!</div>
+                                                )}
+                                            </div>
+                                        </div>
                                         <input
                                             type="text"
-                                            placeholder='Amount in this budget'
+                                            placeholder='Address'
                                             className='p-2 my-2 rounded-2xl shadow-xl border w-[100%] font-extrabold'
                                             value={location}
                                             onChange={(e) => setLocation(e.target.value)}
                                         />
                                     </div>
                                     <div className='font-extrabold'>
-                                        Pop-Up Shop Fee:
+                                        <div className='flex'>
+                                            <div>
+                                                Pop-up Shop Fee:
+                                            </div>
+                                            <div className='pl-4 text-red-500'>
+                                                {(shopFeeInvalid) && (
+                                                    <div>Please Enter a Fee!</div>
+                                                )}
+                                            </div>
+                                        </div>
                                         <input
                                             type="text"
-                                            placeholder='Amount in this budget'
+                                            placeholder='Fee Amount'
                                             className='p-2 my-2 rounded-2xl shadow-xl border w-[100%] font-extrabold'
                                             value={shopFee}
                                             onChange={(e) => setShopFee(e.target.value)}
