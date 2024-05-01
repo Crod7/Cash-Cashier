@@ -66,8 +66,8 @@ const StartPage: React.FC = () => {
                             </button>
                             <div className='flex justify-between'>
                                 <div>
-                                    <div className='bg-gray-300 h-[300px] mx-10'>
-                                        <img src={imageUrl} />
+                                    <div className='h-[300px] w-[500px] mx-10'>
+                                        <img src={imageUrl} className='bg-gray-300 h-[300px] w-[500px] object-cover' />
                                     </div>
                                     <ImageUploaderButton />
                                 </div>
@@ -86,7 +86,7 @@ const StartPage: React.FC = () => {
                                         Quantity:
                                         <input
                                             type="text"
-                                            placeholder='Amount in this budget'
+                                            placeholder='Quantity'
                                             className='p-2 my-2 rounded-2xl shadow-xl border w-[100%] font-extrabold'
                                             value={quantity}
                                             onChange={(e) => setQuantity(e.target.value)}
@@ -96,7 +96,7 @@ const StartPage: React.FC = () => {
                                         Price:
                                         <input
                                             type="text"
-                                            placeholder='Amount in this budget'
+                                            placeholder='Amount'
                                             className='p-2 my-2 rounded-2xl shadow-xl border w-[100%] font-extrabold'
                                             value={price}
                                             onChange={(e) => setPrice(e.target.value)}
