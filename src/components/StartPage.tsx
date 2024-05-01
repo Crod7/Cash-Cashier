@@ -17,7 +17,6 @@ import UserData from '../types/UserData';
 import GetUser from '@/lib/database/apiFunctions/user/GetUser';
 import UpdateUser from '@/lib/database/apiFunctions/user/UpdateUser';
 import PostPopUpShop from '@/lib/database/apiFunctions/popUpShop/PostPopUpShop';
-import GetPopUpShop from '@/lib/database/apiFunctions/popUpShop/GetPopUpShop';
 import GeneratePopUpShopID from '@/lib/database/apiFunctions/popUpShop/GeneratePopUpShopID';
 
 const StartPage: React.FC = () => {
@@ -43,14 +42,18 @@ const StartPage: React.FC = () => {
     const userData = useSelector((state: any) => state.user.userData);
 
     // =============================================================================================================================================================================
-
+    // User edits the shop linked to their 'currentPopUpShopID'
     const handleShopClick = () => {
         dispatch(setPage('Shop'))
     }
     // =============================================================================================================================================================================
     // When the Start button is pressed we add a new shop to the user's shop history and set their current shop to this new one
+
     const handleNewShopModalSubmit = async (event: { preventDefault: () => void; }) => {
+
         event.preventDefault(); // Prevent the default form submission behavior from reloading the page
+
+
 
         // We reset validation checks
         setNameInvalid(false)
@@ -72,10 +75,8 @@ const StartPage: React.FC = () => {
         }
         // We use formIsValid so that if more than one field is incorrect, we can let the user know which fields need modifying.
         if (!formIsValid) {
-            console.log('1')
             return
         }
-        console.log('2')
 
         dispatch(setLoadingScreen(true));
 
@@ -86,13 +87,14 @@ const StartPage: React.FC = () => {
             // We grab the next available PopUpShopID
             const nextPopUpShopID = await GeneratePopUpShopID();
 
+            let currentDateTime = new Date()
             const NewPopUpShop: PopUpShop = {
                 PopUpShopID: nextPopUpShopID,
-                name: 'name',
-                location: 'location',
+                name: name,
+                location: location,
                 total: 0,
-                dateOpened: '',
-                popUpShopFee: 0
+                dateOpened: currentDateTime,
+                popUpShopFee: shopFee
             };
             // Add new Pop-Up Shop to database.
             await PostPopUpShop(NewPopUpShop)
@@ -107,14 +109,18 @@ const StartPage: React.FC = () => {
             const updatedUser = {
                 ...userToBeUpdated,
                 shopHistory: updatedShopHistory,
-                currentPopUpShopID: nextPopUpShopID
+                currentPopUpShopID: nextPopUpShopID // User uses this to modify this current shop next
             };
 
             await UpdateUser(updatedUser);
+
+            // Once everything is updated we transfer the user to the shop page. 
+            dispatch(setPage('Shop'))
         } catch (error) {
             console.error('Error at src.components.StartPage.handleNewShopModalSubmit() :', error);
         }
         dispatch(setLoadingScreen(false));
+
     };
 
     // =============================================================================================================================================================================

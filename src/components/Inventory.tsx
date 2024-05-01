@@ -47,7 +47,6 @@ const StartPage: React.FC = () => {
     // On image upload we hold its url. If the item is saved we add this as the image.
     useEffect(() => {
         setImageUrl(saveImageData)
-        console.log(imageUrl)
     }, [saveImageData]);
     // =============================================================================================================================================================================
 
